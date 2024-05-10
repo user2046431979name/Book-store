@@ -26,28 +26,30 @@ class CategoryApi(generics.ListCreateAPIView):
     serializer_class = CategorySerializers
 
 
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
+
 
 
 class SearchProduct(APIView):
     def post(self,request):
-        title = request.data.get('title')
+        title = request.POST.get('title')
         category_id = request.data.get('category_id')
 
         books = Book.objects.all()
         if not title and not category_id:
-            return Response({'message': 'Ключи "title" и "category_id" отсутствуют в запросе'},
-                            status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Ключи "title" и "category_id" отсутствуют в запросе'},status=status.HTTP_400_BAD_REQUEST)
+        if title and category_id:
+            books = books.filter(title__icontains=title,category_id=category_id)
 
         if title:
             books = books.filter(title__icontains=title)
 
         if category_id:
             books = books.filter(category_id=category_id)
-        if title and category_id:
-            books = books.filter(title__icontains=title,category_id=category_id)
 
         serializer = BookSerializers(books,many=True)
-
         return Response({'books': serializer.data})
 
 
