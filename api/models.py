@@ -20,6 +20,7 @@ class Book(models.Model):
     description = models.TextField()
     isLike = models.BooleanField(default=False)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    created_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
 

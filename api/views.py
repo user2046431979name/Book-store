@@ -12,6 +12,9 @@ import json
 class BooksApi(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializers
+    def get_queryset(self):
+        queryset = Book.objects.all().order_by('-created_date')
+        return queryset
 
 
 
