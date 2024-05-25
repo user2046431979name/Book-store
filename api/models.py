@@ -13,6 +13,9 @@ class MessageForAdmin(models.Model):
     number = models.CharField(max_length=15)
     text = models.TextField()
 
+    def __str__(self):
+        return self.number
+
 
 
 
@@ -26,7 +29,8 @@ class Setting(models.Model):
     numberAdmin = models.CharField(max_length=15,verbose_name='номер админа')
 
 
-
+    def __str__(self):
+        return self.numberAdmin
 
 
 
