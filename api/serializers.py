@@ -9,6 +9,6 @@ class BookSerializers(ModelSerializer):
 
 class CategorySerializers(ModelSerializer):
     class Meta:
-        model = Category
+        model = Categorie
         fields = '__all__'
 
