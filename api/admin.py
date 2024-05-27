@@ -2,7 +2,8 @@ from django.contrib import admin
 from .models import *
 
 
-admin.site.regiter(Book)
-admin.site.regiter(Category)
-
+admin.site.register(Book)
+admin.site.register(Category)
+admin.site.register(MessageForAdmin)
+admin.site.register(Setting)
 

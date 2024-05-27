@@ -35,25 +35,46 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 
-class SearchProduct(APIView):
-    def post(self,request):
-        title = request.POST.get('title')
-        category_id = request.data.get('category_id')
+# class SearchProduct(APIView):
+#     def post(self,request):
+#         title = request.POST.get('title')
+#         category_id = request.data.get('category_id')
 
-        books = Book.objects.all()
-        if not title and not category_id:
-            return Response({'message': 'Ключи "title" и "category_id" отсутствуют в запросе'},status=status.HTTP_400_BAD_REQUEST)
-        if title and category_id:
-            books = books.filter(title__icontains=title,category_id=category_id)
+#         books = Book.objects.all()
+#         if not title and not category_id:
+#             return Response({'message': 'Ключи "title" и "category_id" отсутствуют в запросе'},status=status.HTTP_400_BAD_REQUEST)
+#         if title and category_id:
+#             books = books.filter(title__icontains=title,category_id=category_id)
 
+#         if title:
+#             books = books.filter(title__icontains=title)
+
+#         if category_id:
+#             books = books.filter(category_id=category_id)
+
+#         serializer = BookSerializers(books,many=True)
+#         return Response({'books': serializer.data})
+    
+  
+
+class SearchProduct(generics.ListAPIView):
+    serializer_class = BookSerializers
+
+    def get_queryset(self):
+
+        title = self.request.GET.get('title')
+        category_id = self.request.GET.get('category_id')
+        
         if title:
-            books = books.filter(title__icontains=title)
+            books = Book.objects.filter(title__icontains=title)
+            return books
+
 
         if category_id:
-            books = books.filter(category_id=category_id)
-
-        serializer = BookSerializers(books,many=True)
-        return Response({'books': serializer.data})
-
-
+            books = Book.objects.filter(category_id=category_id)
+            return books
+            
+        if title and category_id:
+            books = Book.objects.filter(title__icontains=title,category_id=category_id)
+            return books
 

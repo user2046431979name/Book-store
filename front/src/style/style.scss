@@ -1,0 +1,65 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", Sans-serif;
+}
+.container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+.col-3 {
+  width: 25%;
+  padding: 0 15px;
+}
+.col-4 {
+  width: 33.3%;
+  padding: 0 15px;
+}
+.col-6 {
+  width: 50%;
+  padding: 0 15px;
+}
+.col-9 {
+  width: 75%;
+  padding: 0 15px;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.content-wrap {
+  flex: 1;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}
+
+// .slick-dots li.slick-active button:before {
+//   color: #ed553b;
+//   border: 1px solid #ed553b;
+//   border-radius: 50%;
+//   padding-top: 1px;
+// }
+
+@import "./Header.scss";
+@import "./Home.scss";
+@import "./Footer.scss";
+@import "./Detail.scss";
+@import "./Books.scss";
+@import "./Search.scss";
+@import "./Contact.scss";
