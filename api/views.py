@@ -1,10 +1,9 @@
 from rest_framework import generics
+from rest_framework.pagination import PageNumberPagination
 from .serializers import *
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.views import APIView
-import json
+from django.utils import timezone
+from datetime import timedelta
+
 
 
 
@@ -39,9 +38,27 @@ class CategoryApi(generics.ListCreateAPIView):
     serializer_class = CategorySerializers
 
 
-class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Categorie.objects.all()
-    serializer_class = CategorySerializers
+class CategoryDetail(generics.ListAPIView):
+    serializer_class = BookSerializers
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+        queryset = Book.objects.filter(category_id=pk)
+        return queryset
+
+
+
+
+class CustomPagination(PageNumberPagination):
+    page_size = 18
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+class NewBooksApi(generics.ListAPIView):
+    serializer_class = BookSerializers
+    pagination_class = CustomPagination
+    def get_queryset(self):
+        queryset = Book.objects.filter(created_date__gte=timezone.now() - timedelta(days=7))
+        return queryset
+
 
 
 
