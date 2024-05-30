@@ -1,5 +1,30 @@
 from django.db import models
+<<<<<<< HEAD
+=======
+from django.conf import settings
+from django.contrib.postgres.fields import ArrayField
+>>>>>>> ce490caf5c85f652562fe3e2861f9805820795f4
 
+
+class MessageForAdmin(models.Model):
+    number = models.CharField(max_length=15)
+    text = models.TextField()
+    
+    def __str__(self):
+        return self.number
+    
+
+class Setting(models.Model):
+    logo = models.ImageField()
+    instagram = models.TextField(blank=True) 
+    whatsapp = models.TextField(blank=True) 
+    facebook = models.TextField(blank=True) 
+    numberAdmin = models.CharField(max_length=15)
+    coordinate = models.TextField(blank=True)
+    linkMap = models.TextField(blank=True)
+    
+    
+    
 
 
 
