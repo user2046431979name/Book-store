@@ -12,7 +12,7 @@ const Details = () => {
   useEffect(() => {
     dispatch(getBookItem(id));
   }, []);
-  
+
   return (
     <section className="detail">
       <div className="container">

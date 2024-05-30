@@ -4,38 +4,18 @@ from django.contrib.postgres.fields import ArrayField
 
 
 class MessageForAdmin(models.Model):
+    name = models.CharField(max_length=255)
     number = models.CharField(max_length=15)
     text = models.TextField()
     
     def __str__(self):
-        return self.number
-    
-
-class Setting(models.Model):
-    logo = models.ImageField()
-    instagram = models.TextField(blank=True) 
-    whatsapp = models.TextField(blank=True) 
-    facebook = models.TextField(blank=True) 
-    numberAdmin = models.CharField(max_length=15)
-    coordinate = models.TextField(blank=True)
-    linkMap = models.TextField(blank=True)
+        return self.name
     
     
+    class Meta:
+        verbose_name_plural = "Сообщение для админа"
+
     
-
-
-
-
-
-
-
-
-class MessageForAdmin(models.Model):
-    number = models.CharField(max_length=15)
-    text = models.TextField()
-
-    def __str__(self):
-        return self.number
 
 
 
@@ -52,6 +32,9 @@ class Setting(models.Model):
 
     def __str__(self):
         return self.numberAdmin
+    
+    class Meta:
+        verbose_name_plural = "Настройки сайта"
 
 
 
@@ -64,6 +47,10 @@ class Categorie(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+    class Meta:
+        verbose_name_plural = "Категории"
 
 class Book(models.Model):
     image = models.ImageField()
@@ -77,5 +64,9 @@ class Book(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
+    
+
+    class Meta:
+        verbose_name_plural = "Книги"
 
 

@@ -26,7 +26,7 @@ const SearchForm: React.FC<Props> = ({
     onFormSubmit(state);
     setState({
       title: "",
-      category_id: "",  
+      category_id: "",
     });
   };
 

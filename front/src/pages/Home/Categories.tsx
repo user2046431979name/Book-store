@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/redux";
-import { getCategories, selectCategories } from "../../slice/category";
+import { getCategories, useCategories } from "../../slice/category";
+import CardCategory from "../../components/CardCategory/CardCategory";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
-
-  const categories = useAppSelector(selectCategories);
+  const { list: categories } = useCategories();
+  // const categories = useAppSelector(selectCategories);
   useEffect(() => {
     dispatch(getCategories());
   }, []);
@@ -16,20 +18,17 @@ const Categories = () => {
         <div className="row">
           {categories.map((category) => {
             return (
-              <div className="col-4" key={category.id}>
-                <div className="category__content">
-                  <img
-                    src={category.image}
-                    alt={category.title}
-                    className="category__content-img"
-                  />
-                  <h3 className="category__content-title">{category.title}</h3>
-                </div>
-              </div>
+              <CardCategory
+                key={category.id}
+                category={category}
+                title="col-4"
+              />
             );
           })}
         </div>
-        <button className="category__btn">view more</button>
+        <Link to={"/category"} className="category__btn">
+          view more
+        </Link>
       </div>
     </section>
   );

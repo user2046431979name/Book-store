@@ -4,9 +4,11 @@ import Header from "./components/Header/Header";
 import Details from "./pages/Details/Details";
 import Home from "./pages/Home/Home";
 import NewRelease from "./pages/NewRelease/NewRelease";
-import Search from "./pages/Search/Search";
+import Book from "./pages/Search/Book";
 import "./style/style.scss";
 import Contact from "./pages/Contact/Contact";
+import Category from "./pages/Category/Category";
+import BookCategory from "./pages/BookCategory/BookCategory";
 const App = () => {
   return (
     <BrowserRouter>
@@ -17,8 +19,10 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/book/:id" element={<Details />} />
             <Route path="/new" element={<NewRelease />} />
-            <Route path="/books" element={<Search />} />
+            <Route path="/books" element={<Book />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/category" element={<Category />} />
+            <Route path="/category/:id" element={<BookCategory />} />
           </Routes>
         </div>
         <Footer />

@@ -1,17 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { Category } from "../type";
+import { useAppSelector } from "../app/redux";
 import { RootState } from "../app/store";
 import axiosApi from "../services/axiosApi";
-import { useAppSelector } from "../app/redux";
+import type { Book, Category } from "../type";
 type categoryState = {
   list: Category[];
   loading: boolean;
-  item: Category | null;
+  item: Book[];
 };
 const initialState: categoryState = {
   list: [],
   loading: false,
-  item: null,
+  item: [],
 };
 
 const categorySlice = createSlice({
@@ -52,7 +52,7 @@ export const getCategories = createAsyncThunk("/getCategoryList", async () => {
   }
 });
 
-export const getCategoryItem = createAsyncThunk<Category, string>(
+export const getCategoryItem = createAsyncThunk<Book[], string>(
   "/getCategoryItem",
   async (id) => {
     try {
@@ -64,9 +64,6 @@ export const getCategoryItem = createAsyncThunk<Category, string>(
   }
 );
 
-export const selectCategories = (state: RootState) => state.category.list;
-export const selectCategoryItem = (state: RootState) => state.category.item;
-export const selectCategoryLoading = (state: RootState) =>
-  state.category.loading;
-
+export const useCategories = () =>
+  useAppSelector((state: RootState) => state.category);
 export default categorySlice.reducer;

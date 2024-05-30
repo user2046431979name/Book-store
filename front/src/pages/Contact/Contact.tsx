@@ -1,6 +1,34 @@
-import React from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import { Lead } from "../../type";
+import { sendQuestion } from "../../slice/Lead";
+import { useAppDispatch } from "../../app/redux";
 
 const Contact = () => {
+  const dispatch = useAppDispatch();
+  const [state, setState] = useState<Lead>({
+    name: "",
+    number: "",
+    text: "",
+  });
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setState((prev) => ({ ...prev, [name]: value }));
+  };
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+
+    if (Object.values(state).some((value) => value.trim() === "")) {
+      return;
+    }
+
+    dispatch(sendQuestion(state));
+
+    setState({
+      name: "",
+      number: "",
+      text: "",
+    });
+  };
   return (
     <section className="contact">
       <div className="container">
@@ -17,24 +45,39 @@ const Contact = () => {
             </div>
           </div>
           <div className="col-6">
-            <form action="" className="contact__form">
+            <form onSubmit={onSubmit} action="" className="contact__form">
               <h3 className="contact__form-title">Появились вопросы?</h3>
               <input
                 type="text"
                 placeholder="Имя"
                 className="contact__form-input"
+                name="name"
+                onChange={onChange}
+                value={state.name}
               />
               <input
                 type="text"
                 placeholder="Телефон"
                 className="contact__form-input"
+                name="number"
+                onChange={onChange}
+                value={state.number}
               />
               <input
                 type="text"
                 placeholder="Ваш вопрос"
                 className="contact__form-input"
+                name="text"
+                onChange={onChange}
+                value={state.text}
               />
-              <button className="contact__form-btn">Отправить</button>
+              <button
+                onSubmit={onSubmit}
+                type="submit"
+                className="contact__form-btn"
+              >
+                Отправить
+              </button>
             </form>
           </div>
         </div>

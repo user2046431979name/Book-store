@@ -6,7 +6,11 @@ class BookSerializers(ModelSerializer):
         model = Book
         fields = '__all__'
 
-
+class MessageSerializer(ModelSerializer):
+    class Meta:
+        model = MessageForAdmin
+        fields = '__all__'
+    
 class CategorySerializers(ModelSerializer):
     class Meta:
         model = Categorie

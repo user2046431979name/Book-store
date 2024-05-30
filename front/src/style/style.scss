@@ -48,7 +48,9 @@ a {
 button {
   cursor: pointer;
 }
-
+.header__bottom-burger {
+  display: none;
+}
 // .slick-dots li.slick-active button:before {
 //   color: #ed553b;
 //   border: 1px solid #ed553b;
@@ -63,3 +65,4 @@ button {
 @import "./Books.scss";
 @import "./Search.scss";
 @import "./Contact.scss";
+@import "./Media.scss";

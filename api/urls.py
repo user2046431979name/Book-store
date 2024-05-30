@@ -8,7 +8,9 @@ urlpatterns = [
     path('categories/',CategoryApi.as_view()),
     path('categories/<int:pk>', CategoryDetail.as_view()),
 
-    path('books/',SearchProduct.as_view())
+    path('books/',SearchProduct.as_view()),
+
+    path('question/',MessageForAdminView.as_view())
 
 ]
 

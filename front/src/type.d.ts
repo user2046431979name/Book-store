@@ -31,3 +31,8 @@ export type SearchBook = {
   title?: string;
   category_id?: string;
 };
+export type Lead = {
+  name: string;
+  number: string;
+  text: string;
+};
