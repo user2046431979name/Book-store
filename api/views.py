@@ -62,7 +62,7 @@ class NewBooksApi(generics.ListAPIView):
 
 
 
-<<<<<<< HEAD
+
 # class SearchProduct(APIView):
 #     def post(self,request):
 #         title = request.POST.get('title')
@@ -93,12 +93,12 @@ class SearchProduct(generics.ListAPIView):
         title = self.request.GET.get('title')
         category_id = self.request.GET.get('category_id')
         
-        if title:
+        if title and not category_id:
             books = Book.objects.filter(title__icontains=title)
             return books
 
 
-        if category_id:
+        if category_id and not title:
             books = Book.objects.filter(category_id=category_id)
             return books
             
@@ -106,5 +106,4 @@ class SearchProduct(generics.ListAPIView):
             books = Book.objects.filter(title__icontains=title,category_id=category_id)
             return books
 
-=======
->>>>>>> d3724db4d706d1dfab476c5eabbf0fe371ceff18
+
