@@ -5,7 +5,9 @@ from django.utils import timezone
 from datetime import timedelta
 
 
-
+class SettingsApi(generics.ListAPIView):
+    queryset = Setting.objects.all()
+    serializer_class = SettingSerializers
 
 
 class BooksApi(generics.ListCreateAPIView):
