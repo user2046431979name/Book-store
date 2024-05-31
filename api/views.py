@@ -9,6 +9,9 @@ class SettingsApi(generics.ListAPIView):
     queryset = Setting.objects.all()
     serializer_class = SettingSerializers
 
+class MessageApi(generics.CreateAPIView):
+    queryset = MessageForAdmin
+    serializer_class = MessageSerializers 
 
 class BooksApi(generics.ListCreateAPIView):
     serializer_class = BookSerializers
