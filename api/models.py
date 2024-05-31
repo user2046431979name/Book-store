@@ -4,8 +4,7 @@ from django.conf import settings
 
 
 class MessageForAdmin(models.Model):
-    name = models.CharField(max_length=22
-                            5)
+    name = models.CharField(max_length=255)
     number = models.CharField(max_length=15)
     text = models.TextField()
     
