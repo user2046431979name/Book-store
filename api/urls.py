@@ -9,10 +9,11 @@ urlpatterns = [
     path('categories/<int:pk>', CategoryDetail.as_view()),
 
 
-    path('newBooks/',NewBooksApi.as_view())
+    path('newBooks/',NewBooksApi.as_view()),
 
-    path('books/',SearchProduct.as_view())
-
+    path('books/',SearchProduct.as_view()),
+    path('settings',SettingsApi.as_view())
+    
 
 ]
 
