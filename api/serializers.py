@@ -21,3 +21,13 @@ class CategorySerializers(ModelSerializer):
         model = Categorie
         fields = '__all__'
 
+class SettingSerializers(ModelSerializer):
+    class Meta:
+        model = Setting
+        fields = '__all__'
+
+class MessageSerializers(ModelSerializer):
+    class Meta:
+        model = MessageForAdmin
+        fields = '__all__'
+

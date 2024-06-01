@@ -37,11 +37,12 @@ export type Lead = {
   text: string;
 };
 export type Settings = {
+  id: number;
   logo: string;
   instagram: string;
   facebook: string;
   whatsapp: string;
-  coordinate: string;
-  linkMap: string;
+  address: string;
+  duty: string;
   numberAdmin: string;
 };

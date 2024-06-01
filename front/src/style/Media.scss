@@ -191,7 +191,7 @@
     row-gap: 10px;
   }
   .header__menu.active {
-    top: 106px;
+    top: 67px;
   }
   .footer__content-text {
     font-size: 15px;
@@ -228,5 +228,17 @@
   }
   .header__bottom::before {
     width: 90%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .header__menu {
+    top: -50px;
+  }
+  .new__content-img {
+    padding: 0;
+    img {
+      height: 250px;
+    }
   }
 }

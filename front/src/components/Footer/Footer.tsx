@@ -1,8 +1,16 @@
-import React from "react";
-import instagram from "../../assets/Footer/instagram.svg";
+import React, { useEffect } from "react";
 import logo from "../../assets/Footer/logo.svg";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../app/redux";
+import { getSettingsObject, useSettings } from "../../slice/settings";
+import facebook from "../../assets/Header/facebook.svg";
+import instagram from "../../assets/Header/instagram.svg";
 const Footer = () => {
+  const dispatch = useAppDispatch();
+  const { list: settings, item: item } = useSettings();
+  useEffect(() => {
+    dispatch(getSettingsObject());
+  }, []);
   return (
     <footer className="footer">
       <div className="container">
@@ -15,11 +23,11 @@ const Footer = () => {
                 commodo consequat.{" "}
               </p>
               <div>
-                <a href="#">
+                <a href={item?.instagram}>
                   <img src={instagram} alt="" />
                 </a>
-                <a href="#">
-                  <img src={instagram} alt="" />
+                <a href={item?.facebook}>
+                  <img src={facebook} alt="" />
                 </a>
               </div>
             </div>

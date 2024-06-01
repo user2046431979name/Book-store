@@ -73,6 +73,9 @@ button {
     font-size: 20px;
   }
 }
+.footer__content div a img:last-child {
+  height: 40px;
+}
 @import "./Header.scss";
 @import "./Home.scss";
 @import "./Footer.scss";

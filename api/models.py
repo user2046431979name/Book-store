@@ -19,8 +19,8 @@ class Setting(models.Model):
     instagram = models.TextField(blank=True)
     facebook = models.TextField(blank=True)
     whatsapp = models.TextField(blank=True)
-    coordinate = models.TextField(verbose_name='координаты')
-    linkMap = models.TextField(verbose_name='ссылка на карту')
+    address = models.TextField(verbose_name='адрес')
+    duty = models.TextField(verbose_name='режим работы', blank=True)
     numberAdmin = models.CharField(max_length=15,verbose_name='номер админа')
 
 

@@ -1,14 +1,19 @@
-import { NavLink } from "react-router-dom";
-import logo from "../../assets/Header/image.png";
-import like from "../../assets/Header/like.svg";
-import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import MenuIcon from "@mui/icons-material/Menu";
+import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../app/redux";
+import { getSettingsObject, useSettings } from "../../slice/settings";
 const HeaderBottom = () => {
-  const [burger, setBurder] = useState(false);
+  const dispatch = useAppDispatch();
+  const { list: settings, item: item } = useSettings();
+  useEffect(() => {
+    dispatch(getSettingsObject());
+  }, []);
+  const [burger, setBurger] = useState(false);
   return (
     <div className="header__bottom container">
-      <img className="header__bottom-img" src={logo} alt="" />
+      <img className="header__bottom-img" src={item?.logo} alt="" />
       <nav className="header__nav">
         <ul className={burger ? "header__menu active" : "header__menu"}>
           <li className="header__menu-link">
@@ -29,7 +34,7 @@ const HeaderBottom = () => {
         </ul>
         <button
           className="header__bottom-burger"
-          onClick={() => setBurder(!burger)}
+          onClick={() => setBurger(!burger)}
         >
           {burger ? <CloseIcon /> : <MenuIcon />}
         </button>
