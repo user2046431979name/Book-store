@@ -8,8 +8,9 @@ from datetime import timedelta
 class SettingsApi(generics.ListAPIView):
     serializer_class = SettingSerializers
     def get_queryset(self):
-        queryset = Setting.objects.all()[-1]
-        return queryset
+        q = Setting.objects.all().order_by('-id')[:1]
+        return q
+
 class MessageApi(generics.CreateAPIView):
     queryset = MessageForAdmin
     serializer_class = MessageSerializers 
