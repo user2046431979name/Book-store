@@ -4,16 +4,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import { useAppDispatch, useAppSelector } from "../../app/redux";
 import Card from "../../components/Card/Card";
-import {
-  getBooks,
-  selectBooksCreatedAfterYesterday,
-  useBooks,
-} from "../../slice/book";
+import { getBooks, useBooks } from "../../slice/book";
 const New = () => {
   const dispatch = useAppDispatch();
   const { list: books } = useBooks();
-  const news = useAppSelector(selectBooksCreatedAfterYesterday);
-  let list = news.length === 0 ? books : news;
+  const { list: second_list } = useBooks();
+  let list = second_list.length === 0 ? books : second_list;
 
   useEffect(() => {
     dispatch(getBooks());
@@ -35,18 +31,20 @@ const New = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToScroll: 1,
           initialSlide: 2,
+          dots: false,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 576,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: false,
         },
       },
     ],

@@ -11,6 +11,11 @@ class MessageSerializer(ModelSerializer):
         model = MessageForAdmin
         fields = '__all__'
     
+class SettingSerializers(ModelSerializer):
+    class Meta:
+        model = Setting
+        fields = '__all__'
+
 class CategorySerializers(ModelSerializer):
     class Meta:
         model = Categorie

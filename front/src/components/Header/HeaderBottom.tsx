@@ -12,19 +12,19 @@ const HeaderBottom = () => {
       <nav className="header__nav">
         <ul className={burger ? "header__menu active" : "header__menu"}>
           <li className="header__menu-link">
-            <NavLink to={"/"}>home</NavLink>
+            <NavLink to={"/"}>Home</NavLink>
           </li>
           <li className="header__menu-link">
-            <NavLink to={"/about"}>about us</NavLink>
+            <NavLink to={"/category"}>Категории</NavLink>
           </li>
           <li className="header__menu-link">
-            <NavLink to={"/books"}>books</NavLink>
+            <NavLink to={"/books"}>Книги</NavLink>
           </li>
           <li className="header__menu-link">
-            <NavLink to={"/new"}>new release</NavLink>
+            <NavLink to={"/new"}>Новые книги</NavLink>
           </li>
           <li className="header__menu-link">
-            <NavLink to={"/contact"}>contact us</NavLink>
+            <NavLink to={"/contact"}>Контакт</NavLink>
           </li>
         </ul>
         <button

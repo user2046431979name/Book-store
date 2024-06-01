@@ -36,3 +36,12 @@ export type Lead = {
   number: string;
   text: string;
 };
+export type Settings = {
+  logo: string;
+  instagram: string;
+  facebook: string;
+  whatsapp: string;
+  coordinate: string;
+  linkMap: string;
+  numberAdmin: string;
+};

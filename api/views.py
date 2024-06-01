@@ -1,13 +1,15 @@
 from rest_framework import generics
+from rest_framework.pagination import PageNumberPagination
 from .serializers import *
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.views import APIView
-import json
+from django.utils import timezone
+from datetime import timedelta
 
 
-
+class SettingsApi(generics.ListAPIView):
+    serializer_class = SettingSerializers
+    def get_queryset(self):
+        queryset = Setting.objects.all().last()
+        return queryset
 
 class BooksApi(generics.ListCreateAPIView):
     serializer_class = BookSerializers
@@ -26,35 +28,38 @@ class BooksApi(generics.ListCreateAPIView):
             return queryset
         return queryset
 
-
-
 class BooksDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializers
-
-
 
 class CategoryApi(generics.ListCreateAPIView):
     queryset = Categorie.objects.all()
     serializer_class = CategorySerializers
 
+class CategoryDetail(generics.ListAPIView):
+    serializer_class = BookSerializers
+    def get_queryset(self):
+        pk = self.kwargs.get("pk")
+        queryset = Book.objects.filter(category_id=pk)
+        return queryset
 
-class CategoryDetail(APIView):
+class CustomPagination(PageNumberPagination):
+    page_size = 18
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
-    def get(self, request, *args, **kwargs):
-        pk = kwargs.get("pk")
-        books = Book.objects.filter(category_id=pk)
-        serializer = BookSerializers(books,many=True)
-        return Response(serializer.data)
-
-        
-         
 class MessageForAdminView(generics.CreateAPIView):
     queryset = MessageForAdmin.objects.all()
     serializer_class = MessageSerializer
-    
 
-    
+class NewBooksApi(generics.ListAPIView):
+    serializer_class = BookSerializers
+    pagination_class = CustomPagination
+    def get_queryset(self):
+        queryset = Book.objects.filter(created_date__gte=timezone.now() - timedelta(days=7))
+        return queryset
+
+
 
 
 

@@ -1,26 +1,23 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/redux";
+import { useAppDispatch } from "../../app/redux";
 import Card from "../../components/Card/Card";
 import {
   getBooks,
   getBooksByPage,
   getNextBooks,
   getPreviousBooks,
-  getSecondBooks,
-  selectBooksCreatedAfterYesterday,
-  useBooks,
 } from "../../slice/book";
-
+import { getNewBooks, useNewBooks } from "../../slice/newBook";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const NewRelease = () => {
   const dispatch = useAppDispatch();
-  const books = useAppSelector(selectBooksCreatedAfterYesterday);
-  console.log(books);
 
   useEffect(() => {
-    dispatch(getSecondBooks());
+    dispatch(getNewBooks());
   }, []);
 
-  const { list, pagination, currentPage, totalPages } = useBooks();
+  const { list, pagination, currentPage, totalPages } = useNewBooks();
 
   useEffect(() => {
     dispatch(getBooks());
@@ -70,11 +67,11 @@ const NewRelease = () => {
         {shouldShowPagination && (
           <div className="pagination">
             <button onClick={handlePrevious} disabled={!pagination.previous}>
-              Previous
+              <ArrowBackIcon />
             </button>
-            {renderPageNumbers()}
+            <p>{currentPage}</p>
             <button onClick={handleNext} disabled={!pagination.next}>
-              Next
+              <ArrowForwardIcon />
             </button>
           </div>
         )}

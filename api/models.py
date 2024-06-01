@@ -11,14 +11,8 @@ class MessageForAdmin(models.Model):
     def __str__(self):
         return self.name
     
-    
     class Meta:
         verbose_name_plural = "Сообщение для админа"
-
-    
-
-
-
 
 class Setting(models.Model):
     logo = models.ImageField(verbose_name="лого")
@@ -32,23 +26,14 @@ class Setting(models.Model):
 
     def __str__(self):
         return self.numberAdmin
-    
-    class Meta:
-        verbose_name_plural = "Настройки сайта"
-
-
-
-
 
 class Categorie(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField()
 
-
     def __str__(self):
         return self.title
     
-
     class Meta:
         verbose_name_plural = "Категории"
 
@@ -65,7 +50,6 @@ class Book(models.Model):
     def __str__(self):
         return self.title
     
-
     class Meta:
         verbose_name_plural = "Книги"
 

@@ -1,6 +1,7 @@
 import React from "react";
 import instagram from "../../assets/Footer/instagram.svg";
 import logo from "../../assets/Footer/logo.svg";
+import { NavLink } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="footer">
@@ -26,20 +27,21 @@ const Footer = () => {
           <div className="col-4">
             <ul className="footer__menu">
               <h3 className="footer__menu-title">Company</h3>
-              <li className="footer__menu-link">HOME</li>
-              <li className="footer__menu-link">ABOUT US</li>
-              <li className="footer__menu-link">BOOKS</li>
-              <li className="footer__menu-link">NEW RELEASE</li>
-              <li className="footer__menu-link">CONTACT US</li>
-              <li className="footer__menu-link">BLOG</li>
-            </ul>
-          </div>
-          <div className="col-4">
-            <ul className="footer__menu">
-              <h3 className="footer__menu-title">Importent Links</h3>
-              <li className="footer__menu-link">Privacy Policy</li>
-              <li className="footer__menu-link">FAQs</li>
-              <li className="footer__menu-link">Terms of Service</li>
+              <li className="footer__menu-link">
+                <NavLink to={"/"}>Home</NavLink>
+              </li>
+              <li className="footer__menu-link">
+                <NavLink to={"/category"}>Категории</NavLink>
+              </li>
+              <li className="footer__menu-link">
+                <NavLink to={"/books"}>Книги</NavLink>
+              </li>
+              <li className="footer__menu-link">
+                <NavLink to={"/new"}>Новые книги</NavLink>
+              </li>
+              <li className="footer__menu-link">
+                <NavLink to={"/contact"}>Контакт</NavLink>
+              </li>
             </ul>
           </div>
         </div>

@@ -57,7 +57,22 @@ button {
 //   border-radius: 50%;
 //   padding-top: 1px;
 // }
-
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  column-gap: 15px;
+  align-items: center;
+  button {
+    display: block;
+    border: none;
+    font-size: 30px;
+    background: transparent;
+  }
+  p {
+    font-size: 20px;
+  }
+}
 @import "./Header.scss";
 @import "./Home.scss";
 @import "./Footer.scss";
