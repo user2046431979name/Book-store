@@ -1,20 +1,19 @@
-import React, { useEffect } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../app/redux";
+import Card from "../../components/Card/Card";
+import {
+  getBooksByPage
+} from "../../slice/book";
 import {
   getCategoryItem,
   getNextCategories,
   getPreviousCategories,
   useCategories,
 } from "../../slice/category";
-import { useParams } from "react-router-dom";
-import Card from "../../components/Card/Card";
-import {
-  getBooksByPage,
-  getNextBooks,
-  getPreviousBooks,
-} from "../../slice/book";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const BookCategory = () => {
   const dispatch = useAppDispatch();
   // const { item: book } = useCategories();

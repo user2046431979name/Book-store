@@ -52,7 +52,12 @@ const Item = () => {
                       <h2 className="item__content-title">{book.title}</h2>
                       <span className="item__content-line"></span>
                       <p className="item__content-author">{book.author}</p>
-                      <p className="item__content-text">{book.description}</p>
+                      <p className="item__content-text">
+                        {" "}
+                        {book.description.trim().length > 150
+                          ? book.description.substr(0, 150) + "..."
+                          : book.description}
+                      </p>
                       <b className="item__content-price">$ {book.price}</b>
                       <Link
                         to={`/book/${book.id}`}

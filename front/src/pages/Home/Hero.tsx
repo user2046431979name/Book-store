@@ -46,7 +46,11 @@ const Hero = () => {
                   <div className="col-6">
                     <div className="hero__content">
                       <h3 className="hero__content-title">{book.title}</h3>
-                      <p className="hero__content-text">{book.description}</p>
+                      <p className="hero__content-text">
+                        {book.description.trim().length > 150
+                          ? book.description.substr(0, 150) + "..."
+                          : book.description}
+                      </p>
                       <Link
                         to={`/book/${book.id}`}
                         className="hero__content-btn"

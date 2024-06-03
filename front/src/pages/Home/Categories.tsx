@@ -58,9 +58,11 @@ const Categories = () => {
             return <CardCategory key={category.id} category={category} />;
           })}
         </Slider>
-        <Link to={"/category"} className="category__btn">
-          view more
-        </Link>
+        <button>
+          <Link to={"/category"} className="category__btn">
+            view more
+          </Link>
+        </button>
       </div>
     </section>
   );

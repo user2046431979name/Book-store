@@ -1,14 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import BookCategory from "./pages/BookCategory/BookCategory";
+import Category from "./pages/Category/Category";
+import Contact from "./pages/Contact/Contact";
 import Details from "./pages/Details/Details";
 import Home from "./pages/Home/Home";
 import NewRelease from "./pages/NewRelease/NewRelease";
 import Book from "./pages/Search/Book";
 import "./style/style.scss";
-import Contact from "./pages/Contact/Contact";
-import Category from "./pages/Category/Category";
-import BookCategory from "./pages/BookCategory/BookCategory";
 const App = () => {
   return (
     <BrowserRouter>

@@ -19,9 +19,14 @@ const Category = () => {
           {categories.map((category) => {
             return (
               <CardCategory category={category} title="col-4" key={category.id}>
-                <Link to={`/category/${category.id}`} className="category__btn">
-                  view more
-                </Link>
+                <button>
+                  <Link
+                    to={`/category/${category.id}`}
+                    className="category__btn"
+                  >
+                    view more
+                  </Link>
+                </button>
               </CardCategory>
             );
           })}

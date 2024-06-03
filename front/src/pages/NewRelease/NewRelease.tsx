@@ -18,6 +18,7 @@ const NewRelease = () => {
   }, []);
 
   const { list, pagination, currentPage, totalPages } = useNewBooks();
+  // let reverseList = list.reverse();
 
   useEffect(() => {
     dispatch(getBooks());
