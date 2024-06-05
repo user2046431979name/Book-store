@@ -64,10 +64,6 @@ const Book: React.FC = () => {
   };
 
   const shouldShowPagination = list.length > 0 || currentPage > 1;
-  console.log(loading);
-  if (loading) {
-    <h1>Loading</h1>;
-  }
 
   return (
     <div className="search container">
