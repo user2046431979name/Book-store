@@ -20,7 +20,7 @@ const Book: React.FC = () => {
   const { list: categories } = useCategories();
 
   const searchResults = useAppSelector(selectSearchs);
-  const { list, pagination, currentPage, totalPages } = useBooks();
+  const { list, pagination, loading, currentPage, totalPages } = useBooks();
 
   useEffect(() => {
     dispatch(getBooks());
@@ -64,49 +64,57 @@ const Book: React.FC = () => {
   };
 
   const shouldShowPagination = list.length > 0 || currentPage > 1;
+  console.log(loading);
+  if (loading) {
+    <h1>Loading</h1>;
+  }
 
   return (
     <div className="search container">
-      <SearchForm
-        searchResults={searchResults}
-        onFormSubmit={onSearchSubmit}
-        categories={categories}
-      />
-      <div className="container">
-        {searchResults.length !== 0 ? (
-          <div className="row">
-            {searchResults.map((search) => (
-              <div className="col-4" key={search.id}>
-                <Card book={search} />
+      {list.length === 0 ? (
+        <h1>Книг пока что нет</h1>
+      ) : (
+        <>
+          <SearchForm
+            searchResults={searchResults}
+            onFormSubmit={onSearchSubmit}
+            categories={categories}
+          />
+          <div className="container">
+            {searchResults.length !== 0 ? (
+              <div className="row">
+                {searchResults.map((search) => (
+                  <div className="col-4" key={search.id}>
+                    <Card book={search} />
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        ) : (
-          <>
-            <div className="row">
-              {list.map((book) => (
-                <div key={book.id} className="col-4">
-                  <Card book={book} />
+            ) : (
+              <>
+                <div className="row">
+                  {list.map((book) => (
+                    <div key={book.id} className="col-4">
+                      <Card book={book} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            {shouldShowPagination && (
-              <div className="pagination">
-                <button
-                  onClick={handlePrevious}
-                  disabled={!pagination.previous}
-                >
-                  <ArrowBackIcon />
-                </button>
-                <p>{currentPage}</p>
-                <button onClick={handleNext} disabled={!pagination.next}>
-                  <ArrowForwardIcon />
-                </button>
-              </div>
+                <div className="pagination">
+                  <button
+                    onClick={handlePrevious}
+                    disabled={!pagination.previous}
+                  >
+                    <ArrowBackIcon />
+                  </button>
+                  <p>{currentPage}</p>
+                  <button onClick={handleNext} disabled={!pagination.next}>
+                    <ArrowForwardIcon />
+                  </button>
+                </div>
+              </>
             )}
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

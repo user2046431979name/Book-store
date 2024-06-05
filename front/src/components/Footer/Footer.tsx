@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
-import logo from "../../assets/Footer/logo.svg";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch } from "../../app/redux";
-import { getSettingsObject, useSettings } from "../../slice/settings";
+import logo from "../../assets/Footer/logo.svg";
 import facebook from "../../assets/Header/facebook.svg";
 import instagram from "../../assets/Header/instagram.svg";
+import { getSettingsObject, useSettings } from "../../slice/settings";
 const Footer = () => {
   const dispatch = useAppDispatch();
-  const { list: settings, item: item } = useSettings();
+  const { item: item } = useSettings();
   useEffect(() => {
     dispatch(getSettingsObject());
   }, []);
@@ -15,7 +15,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="container">
         <div className="row">
-          <div className="col-4">
+          <div className="col-6">
             <div className="footer__content">
               <img src={logo} alt="" />
               <p className="footer__content-text">
@@ -32,7 +32,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-6">
             <ul className="footer__menu">
               <h3 className="footer__menu-title">Company</h3>
               <li className="footer__menu-link">

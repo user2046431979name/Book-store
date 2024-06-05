@@ -104,7 +104,7 @@ const newBookSlice = createSlice({
       .addCase(
         getNewBooksByPage.fulfilled,
         (state, { payload: { results, count, next, previous } }) => {
-          state.list = results;
+          state.list = results.reverse();
           state.pagination = { count, next, previous };
           state.loading = false;
           state.currentPage = next

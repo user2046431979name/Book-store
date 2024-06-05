@@ -1,7 +1,6 @@
 import React from "react";
 import Backdrop from "./BackDrop";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Book } from "../../type";
+// import "bootstrap/dist/css/bootstrap.min.css";
 interface Props extends React.PropsWithChildren {
   show: boolean;
   title: string | undefined;

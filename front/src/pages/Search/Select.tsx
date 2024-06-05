@@ -28,7 +28,6 @@ const Select: React.FC<Props> = ({
     <div>
       <Autocomplete
         value={value}
-        onSubmit={onSubmit}
         onChange={(event, newValue: Category | null) => {
           setValue(newValue);
           const syntheticEvent = {
@@ -47,7 +46,7 @@ const Select: React.FC<Props> = ({
         options={options}
         getOptionLabel={(option) => option.title}
         sx={{ width: 200 }}
-        renderInput={(params) => <TextField {...params} label="Controllable" />}
+        renderInput={(params) => <TextField {...params} label="Категории" />}
       />
     </div>
   );

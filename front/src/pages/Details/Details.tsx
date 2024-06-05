@@ -10,7 +10,7 @@ const Details = () => {
   const dispatch = useAppDispatch();
   const { item: book } = useBooks();
   const { id } = useParams() as { id: string };
-  const { list: settings, item: item } = useSettings();
+  const { item: item } = useSettings();
 
   useEffect(() => {
     dispatch(getBookItem(id));
@@ -43,8 +43,10 @@ const Details = () => {
         <Modal show={showModal} title={book?.title} onClose={cancel}>
           <div className="modal-body d-flex justify-content-between">
             <h4>
-              Что бы купить книгу {book?.title} напишите на этот номер{" "}
-              {item?.whatsapp}
+              Что бы купить книгу {book?.title} перейди по этой ссылке{"  "}
+              <a className="text-decoration-underline" href={item?.whatsapp}>
+                {item?.numberAdmin}
+              </a>
             </h4>
           </div>
           <div className="modal-footer">
