@@ -52,7 +52,7 @@ const Categories = () => {
   return (
     <section className="category">
       <div className="container">
-        <h2 className="category__title">Explore our Top Categories</h2>
+        <h2 className="category__title">Топ категории</h2>
         <Slider {...settings}>
           {categories.map((category) => {
             return <CardCategory key={category.id} category={category} />;
@@ -60,7 +60,7 @@ const Categories = () => {
         </Slider>
         <button>
           <Link to={"/category"} className="category__btn">
-            view more
+            больше
           </Link>
         </button>
       </div>

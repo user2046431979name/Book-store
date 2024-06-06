@@ -36,7 +36,7 @@ const Footer = () => {
             <ul className="footer__menu">
               <h3 className="footer__menu-title">Company</h3>
               <li className="footer__menu-link">
-                <NavLink to={"/"}>Home</NavLink>
+                <NavLink to={"/"}>Главная</NavLink>
               </li>
               <li className="footer__menu-link">
                 <NavLink to={"/category"}>Категории</NavLink>

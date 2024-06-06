@@ -15,7 +15,7 @@ const Card: React.FC<Props> = ({ book, title }) => {
       <p className="new__content-author ">{book.author}</p>
       <b className="new__content-price">{book.price} KGS</b>
       <Link to={`/book/${book.id}`} className="hero__content-btn">
-        More
+        Подробнее
       </Link>
     </div>
   );

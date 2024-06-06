@@ -6,7 +6,7 @@ import { useAppDispatch } from "../../app/redux";
 import { getSettingsObject, useSettings } from "../../slice/settings";
 const HeaderBottom = () => {
   const dispatch = useAppDispatch();
-  const { list: settings, item: item } = useSettings();
+  const { item: item } = useSettings();
   useEffect(() => {
     dispatch(getSettingsObject());
   }, []);
@@ -17,7 +17,7 @@ const HeaderBottom = () => {
       <nav className="header__nav">
         <ul className={burger ? "header__menu active" : "header__menu"}>
           <li className="header__menu-link">
-            <NavLink to={"/"}>Home</NavLink>
+            <NavLink to={"/"}>Главная</NavLink>
           </li>
           <li className="header__menu-link">
             <NavLink to={"/category"}>Категории</NavLink>

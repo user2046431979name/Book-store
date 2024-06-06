@@ -56,7 +56,7 @@ const Hero = () => {
                         className="hero__content-btn"
                         type="submit"
                       >
-                        lead more
+                        Подробнее
                       </Link>
                     </div>
                   </div>

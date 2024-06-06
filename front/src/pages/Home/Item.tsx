@@ -63,7 +63,7 @@ const Item = () => {
                         to={`/book/${book.id}`}
                         className="item__content-btn"
                       >
-                        learm more
+                        узнать больше
                       </Link>
                     </div>
                   </div>

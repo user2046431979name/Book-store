@@ -24,7 +24,7 @@ const Category = () => {
                     to={`/category/${category.id}`}
                     className="category__btn"
                   >
-                    view more
+                    Подробнее
                   </Link>
                 </button>
               </CardCategory>
