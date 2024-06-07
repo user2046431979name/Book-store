@@ -45,6 +45,7 @@ const Select: React.FC<Props> = ({
         id="controllable-states-demo"
         options={options}
         getOptionLabel={(option) => option.title}
+        isOptionEqualToValue={(option, value) => option.id === value.id}
         sx={{ width: 200 }}
         renderInput={(params) => <TextField {...params} label="Категории" />}
       />
