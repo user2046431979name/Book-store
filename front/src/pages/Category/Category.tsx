@@ -19,7 +19,7 @@ const Category = () => {
           {categories.map((category) => {
             return (
               <CardCategory category={category} title="col-4" key={category.id}>
-                <button>
+                <button className="button">
                   <Link
                     to={`/category/${category.id}`}
                     className="category__btn"

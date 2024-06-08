@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import BookCategory from "./pages/BookCategory/BookCategory";
@@ -9,9 +9,6 @@ import Home from "./pages/Home/Home";
 import NewRelease from "./pages/NewRelease/NewRelease";
 import Book from "./pages/Search/Book";
 import "./style/style.scss";
-import { useEffect } from "react";
-import { selectSearchs } from "./slice/search";
-import { useAppSelector } from "./app/redux";
 const AppContent = () => {
   // const location = useLocation();
   // console.log(location);

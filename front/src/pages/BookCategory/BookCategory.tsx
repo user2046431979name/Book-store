@@ -5,9 +5,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch } from "../../app/redux";
 import Card from "../../components/Card/Card";
-import {
-  getBooksByPage
-} from "../../slice/book";
+
 import {
   getCategoryItem,
   getNextCategories,
@@ -37,9 +35,6 @@ const BookCategory = () => {
     }
   };
 
-  const handlePageClick = (page: number) => {
-    dispatch(getBooksByPage(page));
-  };
   return (
     <section className="categories">
       <div className="container">

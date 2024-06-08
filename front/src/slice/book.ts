@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosApi from "../services/axiosApi";
-import memoize from "memoize-one";
 import { RootState } from "../app/store";
 import { ApiResponse, Book, Pagination } from "../type";
 import { useAppSelector } from "../app/redux";
@@ -32,19 +31,6 @@ export const getBooks = createAsyncThunk<ApiResponse<Book[]>, void>(
   async () => {
     try {
       const { data } = await axiosApi.get("/book/");
-      return data;
-    } catch (error) {
-      console.error("Error fetching books:", error);
-      throw error;
-    }
-  }
-);
-
-export const getBooksByPage = createAsyncThunk<ApiResponse<Book[]>, number>(
-  "book/getBooksByPage",
-  async (page) => {
-    try {
-      const { data } = await axiosApi.get(`/book/?page=${page}`);
       return data;
     } catch (error) {
       console.error("Error fetching books:", error);
@@ -112,26 +98,6 @@ const bookSlice = createSlice({
         }
       )
       .addCase(getBooks.rejected, (state) => {
-        state.loading = false;
-      })
-      .addCase(getBooksByPage.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(
-        getBooksByPage.fulfilled,
-        (state, { payload: { results, count, next, previous } }) => {
-          state.list = results;
-          state.pagination = { count, next, previous };
-          state.loading = false;
-          state.currentPage = next
-            ? Number(new URL(next).searchParams.get("page")) - 1
-            : previous
-            ? Number(new URL(previous).searchParams.get("page")) + 1
-            : 1;
-          state.totalPages = Math.ceil(count / results.length);
-        }
-      )
-      .addCase(getBooksByPage.rejected, (state) => {
         state.loading = false;
       })
       .addCase(getNextBooks.pending, (state) => {

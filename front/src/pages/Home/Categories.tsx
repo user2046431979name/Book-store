@@ -45,7 +45,7 @@ const Categories = () => {
           slidesToScroll: 1,
           dots: false,
           arrows: false,
-        },
+        },  
       },
     ],
   };
@@ -58,7 +58,7 @@ const Categories = () => {
             return <CardCategory key={category.id} category={category} />;
           })}
         </Slider>
-        <button>
+        <button className="button">
           <Link to={"/category"} className="category__btn">
             больше
           </Link>
