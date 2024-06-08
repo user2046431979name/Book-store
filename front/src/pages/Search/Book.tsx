@@ -50,7 +50,7 @@ const Book: React.FC = () => {
 
   return (
     <div className="search container">
-      {list.length === 0 && list.length === 0 ? (
+      {list.length === 0 ? (
         <h1>Книг пока что нет</h1>
       ) : (
         <>

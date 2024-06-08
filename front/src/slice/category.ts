@@ -56,26 +56,6 @@ const categorySlice = createSlice({
       .addCase(getCategoryItem.rejected, (state) => {
         state.loading = false;
       })
-      .addCase(getCategoriesByPage.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(
-        getCategoriesByPage.fulfilled,
-        (state, { payload: { results, count, next, previous } }) => {
-          state.item = results;
-          state.pagination = { count, next, previous };
-          state.loading = false;
-          state.currentPage = next
-            ? Number(new URL(next).searchParams.get("page")) - 1
-            : previous
-            ? Number(new URL(previous).searchParams.get("page")) + 1
-            : 1;
-          state.totalPages = Math.ceil(count / results.length);
-        }
-      )
-      .addCase(getCategoriesByPage.rejected, (state) => {
-        state.loading = false;
-      })
       .addCase(getNextCategories.pending, (state) => {
         state.loading = true;
       })
@@ -129,19 +109,6 @@ export const getCategoryItem = createAsyncThunk<ApiResponse<Book[]>, string>(
     }
   }
 );
-
-export const getCategoriesByPage = createAsyncThunk<
-  ApiResponse<Book[]>,
-  number
->("book/getCategoriesByPage", async (page) => {
-  try {
-    const { data } = await axiosApi.get(`/categories/?page=${page}`);
-    return data;
-  } catch (error) {
-    console.error("Error fetching books:", error);
-    throw error;
-  }
-});
 
 export const getNextCategories = createAsyncThunk<ApiResponse<Book[]>, string>(
   "book/getNextCategories",

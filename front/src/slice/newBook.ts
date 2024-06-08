@@ -37,19 +37,6 @@ export const getNewBooks = createAsyncThunk<ApiResponse<Book[]>, void>(
   }
 );
 
-export const getNewBooksByPage = createAsyncThunk<ApiResponse<Book[]>, number>(
-  "book/getBooksByPage",
-  async (page) => {
-    try {
-      const { data } = await axiosApi.get(`/newBooks/?page=${page}`);
-      return data;
-    } catch (error) {
-      console.error("Error fetching books:", error);
-      throw error;
-    }
-  }
-);
-
 export const getNewNextBooks = createAsyncThunk<ApiResponse<Book[]>, string>(
   "book/getNextBooks",
   async (nextUrl) => {
@@ -96,26 +83,6 @@ const newBookSlice = createSlice({
         }
       )
       .addCase(getNewBooks.rejected, (state) => {
-        state.loading = false;
-      })
-      .addCase(getNewBooksByPage.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(
-        getNewBooksByPage.fulfilled,
-        (state, { payload: { results, count, next, previous } }) => {
-          state.list = results.reverse();
-          state.pagination = { count, next, previous };
-          state.loading = false;
-          state.currentPage = next
-            ? Number(new URL(next).searchParams.get("page")) - 1
-            : previous
-            ? Number(new URL(previous).searchParams.get("page")) + 1
-            : 1;
-          state.totalPages = Math.ceil(count / results.length);
-        }
-      )
-      .addCase(getNewBooksByPage.rejected, (state) => {
         state.loading = false;
       })
       .addCase(getNewNextBooks.pending, (state) => {

@@ -114,16 +114,6 @@ const searchSlice = createSlice({
 });
 export const useSearch = () =>
   useAppSelector((state: RootState) => state.search);
-
-// export const selectSearchs = (state: RootState) => state.search.list;
-// export const selectSearchLoading = (state: RootState) => state.search.loading;
-// export const selectSearchPagination = (state: RootState) =>
-//   state.search.pagination;
-// export const selectSearchCurrentPage = (state: RootState) =>
-//   state.search.currentPage;
-// export const selectSearchTotalPages = (state: RootState) =>
-//   state.search.totalPages;
-
 export default searchSlice.reducer;
 
 // import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";

@@ -1,23 +1,18 @@
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useEffect } from "react";
 import { useAppDispatch } from "../../app/redux";
 import Card from "../../components/Card/Card";
-import { getBooks, getNextBooks, getPreviousBooks } from "../../slice/book";
+import { getNextBooks, getPreviousBooks } from "../../slice/book";
 import { getNewBooks, useNewBooks } from "../../slice/newBook";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const NewRelease = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getNewBooks());
-  }, []);
-
-  const { list, pagination, currentPage, totalPages } = useNewBooks();
-
-  useEffect(() => {
-    dispatch(getBooks());
   }, [dispatch]);
 
+  const { list, pagination, currentPage } = useNewBooks();
   const handleNext = () => {
     if (pagination.next) {
       dispatch(getNextBooks(pagination.next));
@@ -29,7 +24,6 @@ const NewRelease = () => {
       dispatch(getPreviousBooks(pagination.previous));
     }
   };
-  const shouldShowPagination = list.length > 0 || currentPage > 1;
   return (
     <section className="release">
       <div className="container">
@@ -39,17 +33,15 @@ const NewRelease = () => {
             return <Card book={book} key={book.id} title={"col-4"} />;
           })}
         </div>
-        {shouldShowPagination && (
-          <div className="pagination">
-            <button onClick={handlePrevious} disabled={!pagination.previous}>
-              <ArrowBackIcon />
-            </button>
-            <p>{currentPage}</p>
-            <button onClick={handleNext} disabled={!pagination.next}>
-              <ArrowForwardIcon />
-            </button>
-          </div>
-        )}
+        <div className="pagination">
+          <button onClick={handlePrevious} disabled={!pagination.previous}>
+            <ArrowBackIcon />
+          </button>
+          <p>{currentPage}</p>
+          <button onClick={handleNext} disabled={!pagination.next}>
+            <ArrowForwardIcon />
+          </button>
+        </div>
       </div>
     </section>
   );
