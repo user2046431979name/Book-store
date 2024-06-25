@@ -27,7 +27,7 @@ export type Category = {
   image: string;
 };
 
-export type SearchBook = {
+export type BookSearchParams = {
   title?: string;
   category_id?: string;
 };

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import type { Book, SearchBook, Pagination, ApiResponse } from "../type";
+import type { Book, BookSearchParams, Pagination, ApiResponse } from "../type";
 import { RootState } from "../app/store";
 import axiosApi from "../services/axiosApi";
 import { useAppSelector } from "../app/redux";
@@ -24,11 +24,11 @@ const initialState: searchState = {
   totalPages: 1,
 };
 
-export const setSearch = createAsyncThunk(
-  "search/setSearch",
-  async (search: SearchBook | null) => {
+export const doSearch = createAsyncThunk(
+  "search/doSearch",
+  async (searchParams: BookSearchParams | null) => {
     const { data } = await axiosApi.get("/books/", {
-      params: search,
+      params: searchParams,
     });
     return data;
   }
@@ -63,13 +63,17 @@ export const getPreviousSearchs = createAsyncThunk<ApiResponse<Book[]>, string>(
 const searchSlice = createSlice({
   name: "search",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSearch: state => {
+      state.list = []
+    }
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(setSearch.pending, (state) => {
+      .addCase(doSearch.pending, (state) => {
         state.loading = true;
       })
-      .addCase(setSearch.fulfilled, (state, action) => {
+      .addCase(doSearch.fulfilled, (state, action) => {
         const { results, count, next, previous } = action.payload;
         state.loading = false;
         state.list = results;
@@ -77,7 +81,7 @@ const searchSlice = createSlice({
         state.currentPage = 1;
         state.totalPages = Math.ceil(count / results.length);
       })
-      .addCase(setSearch.rejected, (state) => {
+      .addCase(doSearch.rejected, (state) => {
         state.loading = false;
       })
       .addCase(getNextSearchs.pending, (state) => {
@@ -112,55 +116,8 @@ const searchSlice = createSlice({
       });
   },
 });
+
+export const {clearSearch} = searchSlice.actions
 export const useSearch = () =>
   useAppSelector((state: RootState) => state.search);
 export default searchSlice.reducer;
-
-// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-// import type { Book, SearchBook } from "../type";
-// import { RootState } from "../app/store";
-// import axiosApi from "../services/axiosApi";
-
-// type searchState = {
-//   list: Book[];
-//   loading: boolean;
-// };
-
-// const initialState: searchState = {
-//   list: [],
-//   loading: false,
-// };
-
-// export const setSearch = createAsyncThunk(
-//   "search/setSearch",
-//   async (search: SearchBook) => {
-//     const { data } = await axiosApi.get("/books/", {
-//       params: search,
-//     });
-//     return <Book[]>data.results;
-//   }
-// );
-
-// const searchSlice = createSlice({
-//   name: "search",
-//   initialState,
-//   reducers: {},
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(setSearch.pending, (state) => {
-//         state.loading = true;
-//       })
-//       .addCase(setSearch.fulfilled, (state, action) => {
-//         state.loading = false;
-//         state.list = action.payload;
-//       })
-//       .addCase(setSearch.rejected, (state) => {
-//         state.loading = false;
-//       });
-//   },
-// });
-
-// export const selectSearchs = (state: RootState) => state.search.list;
-// export const selectSearchLoading = (state: RootState) => state.search.loading;
-
-// export default searchSlice.reducer;

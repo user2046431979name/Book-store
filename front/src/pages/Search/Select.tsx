@@ -1,26 +1,19 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Book, Category } from "../../type";
+import { Book, Category, BookSearchParams } from "../../type";
 
 interface Props {
-  searchResults: Book[];
   categories: Category[];
   onChange: (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-    newValue: Category | null
+    title: string
   ) => void;
-  onSubmit: (e: React.FormEvent) => void;
 }
 
 const Select: React.FC<Props> = ({
   onChange,
-  onSubmit,
-  searchResults,
-  categories,
+  categories: options,
 }) => {
-  const options = categories;
-
   const [value, setValue] = React.useState<null | Category>(options[0] || null);
   const [inputValue, setInputValue] = React.useState("");
 
@@ -28,21 +21,13 @@ const Select: React.FC<Props> = ({
     <div>
       <Autocomplete
         value={value}
-        onChange={(event, newValue: Category | null) => {
+        onChange={(event, newValue) => {
           setValue(newValue);
-          const syntheticEvent = {
-            target: {
-              name: "category_id",
-              value: newValue ? newValue.id : "",
-            },
-          } as React.ChangeEvent<HTMLInputElement>;
-          onChange(syntheticEvent, newValue);
         }}
         inputValue={inputValue}
         onInputChange={(event, newInputValue) => {
-          setInputValue(newInputValue);
+          onChange(newInputValue);
         }}
-        id="controllable-states-demo"
         options={options}
         getOptionLabel={(option) => option.title}
         isOptionEqualToValue={(option, value) => option.id === value.id}
